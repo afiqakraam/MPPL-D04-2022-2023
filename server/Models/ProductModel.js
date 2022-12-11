@@ -44,12 +44,12 @@ const productSchema = mongoose.Schema({
         require: true,
         default: 0,
     },
-    countInStock: {
+    price: {
         type: Number,
         require: true,
         default: 0,
     },
-    numReviews: {
+    countInStock: {
         type: Number,
         require: true,
         default: 0,
