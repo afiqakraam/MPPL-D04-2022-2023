@@ -8,7 +8,7 @@ import { listProductDetails } from "../Redux/Actions/ProductActions";
 import Loading from "../components/LoadingError/Loading";
 
 const SingleProduct = ({ history, match }) => {
-  const [qty, setQty] = useState(0);
+  const [qty, setQty] = useState(1);
   const productId = match.params.id;
   const dispatch = useDispatch();
 
