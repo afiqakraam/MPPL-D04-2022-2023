@@ -8,14 +8,14 @@ import Loading from "../LoadingError/Loading.js";
 import Message from "../LoadingError/Error.js";
 
 const ShopSection = (props) => {
-  const { keyword } = props;
+  const { keyword, pagenumber } = props;
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products } = productList;
+  const { loading, error, products, page, pages } = productList;
   useEffect(() => {
-    dispatch(listProduct(keyword));
-  }, [dispatch, keyword]);
+    dispatch(listProduct(keyword, pagenumber));
+  }, [dispatch, keyword, pagenumber]);
   return (
     <>
       <div className="container">
@@ -61,7 +61,11 @@ const ShopSection = (props) => {
                 )}
 
                 {/* Pagination */}
-                <Pagination />
+                <Pagination
+                  pages={pages}
+                  page={page}
+                  keyword={keyword ? keyword : ""}
+                />
               </div>
             </div>
           </div>
