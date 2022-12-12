@@ -27,6 +27,7 @@ orderRouter.post(
     } else {
       const order = new Order({
         orderItems,
+        user: req.user.id,
         shippingAddress,
         paymentMethod,
         itemsPrice,
