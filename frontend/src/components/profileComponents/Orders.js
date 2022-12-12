@@ -46,7 +46,7 @@ const Orders = (props) => {
                       key={order._id}
                     >
                       <td>
-                        <a href={`/orders.${order._id}`} className="link">
+                        <a href={`/orders/${order._id}`} className="link">
                           {order._id}
                         </a>
                       </td>

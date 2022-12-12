@@ -29,7 +29,7 @@ const App = () => {
         <PrivateRouter path="/shipping" component={ShippingScreen} />
         <PrivateRouter path="/payment" component={PaymentScreen} />
         <PrivateRouter path="/placeorder" component={PlaceOrderScreen} />
-        <PrivateRouter path="/order/:id" component={OrderScreen} />
+        <PrivateRouter path="/orders/:id" component={OrderScreen} />
         <Route path="*" component={NotFound} />
       </Switch>
     </Router>
