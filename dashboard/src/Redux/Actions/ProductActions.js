@@ -18,7 +18,7 @@ import {
 } from "../Constants/ProductConstants";
 import { logout } from "./userActions";
 
-// ALL USER
+// GET ALL PRODUCT
 export const listProducts = () => async (dispatch, getState) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
