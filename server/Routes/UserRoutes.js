@@ -115,7 +115,7 @@ userRouter.put(
   })
 );
 
-// EGT ALL USER ADMIN
+// GET ALL USER ADMIN
 userRouter.get(
   "/",
   protect,
