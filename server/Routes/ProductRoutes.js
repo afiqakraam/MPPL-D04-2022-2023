@@ -1,7 +1,7 @@
 import express from "express";
 import asyncHandler from "express-async-handler";
 import Product from "../Models/ProductModel.js";
-import { protect } from "../Middleware/AuthMiddleware.js";
+import { admin, protect } from "../Middleware/AuthMiddleware.js";
 
 const productRoute = express.Router();
 
@@ -9,7 +9,7 @@ const productRoute = express.Router();
 productRoute.get(
   "/",
   asyncHandler(async (req, res) => {
-    const pageSize = 2;
+    const pageSize = 6;
     const page = Number(req.query.pageNumber) || 1;
     const keyword = req.query.keyword
       ? {
@@ -25,6 +25,17 @@ productRoute.get(
       .skip(pageSize * (page - 1))
       .sort({ _id: -1 });
     res.json({ products, page, pages: Math.ceil(count / pageSize) });
+  })
+);
+
+// ADMIN GET ALL PRODUCT WITHOUT SEARCH AND PAGNATION
+productRoute.get(
+  "/all",
+  protect,
+  admin,
+  asyncHandler(async (req, res) => {
+    const products = await Product.find({}).sort({ _id: -1 });
+    res.json(products);
   })
 );
 
