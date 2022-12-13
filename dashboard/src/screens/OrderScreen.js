@@ -3,7 +3,7 @@ import Sidebar from "./../components/sidebar";
 import Header from "./../components/Header";
 import OrderMain from "../components/orders/OrderMain";
 
-const OrderScreen = () => {
+const OrderScreen = ({ match }) => {
   return (
     <>
       <Sidebar />
