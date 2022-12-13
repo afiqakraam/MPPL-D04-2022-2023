@@ -6,6 +6,9 @@ import {
   PRODUCT_DELETE_FAIL,
   PRODUCT_DELETE_REQUEST,
   PRODUCT_DELETE_SUCCESS,
+  PRODUCT_EDIT_FAIL,
+  PRODUCT_EDIT_REQUEST,
+  PRODUCT_EDIT_SUCCESS,
   PRODUCT_LIST_FAIL,
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
@@ -119,3 +122,25 @@ export const createProducts =
       });
     }
   };
+
+//EDIT PRODUCT
+export const editProduct = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCT_EDIT_REQUEST });
+    const { data } = await axios.get(`/api/products/${id}`);
+    dispatch({ type: PRODUCT_EDIT_SUCCESS, payload: data });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    if (message === "Not authorized, token failed") {
+      dispatch(logout());
+    }
+
+    dispatch({
+      type: PRODUCT_EDIT_FAIL,
+      payload: message,
+    });
+  }
+};
