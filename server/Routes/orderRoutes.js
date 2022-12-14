@@ -110,4 +110,24 @@ orderRouter.put(
   })
 );
 
+// ORDER IS PAID
+orderRouter.put(
+  "/:id/delivered",
+  protect,
+  asyncHandler(async (req, res) => {
+    const order = await Order.findById(req.params.id);
+
+    if (order) {
+      order.isDelivered = true;
+      order.deliveredAt = Date.now();
+
+      const updateOrder = await order.save();
+      res.json(updateOrder);
+    } else {
+      res.status(404);
+      throw new Error("Order Not Found");
+    }
+  })
+);
+
 export default orderRouter;
